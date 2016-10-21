@@ -9,13 +9,26 @@
     </head>
     <body ng-controller="AppController">
         <div class="container">
-            <h1>Is It There Yet?</h1>
             <div class="panel panel-primary">
-                <div class="panel-heading">Next bus arrives in</div>
-                <div class="panel-body"><h3>{{ next }} minutes</h3></div>
+                <div class="panel-heading"><h3>Next bus</h3></div>
+                <div class="panel-body">
+                    <div ng-show="next.pending">
+                        <h3>Getting schedule information</h3>
+                        <p>Please wait...</p>
+                    </div>
+                    <div ng-show="!next.pending && next.time !== undefined">
+                        <h3>arrives in</h3>
+                        <p>{{ next.wait }}</p>
+                        <h3>at</h3>
+                        <p>{{ next.time }}</p>
+                    </div>
+                    <div ng-show="!next.pending">
+                        <h3><span ng-show="next.time === undefined">There will be no more buses coming today </span>to</h3>
+                        <p>{{ next.stop }}</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <h1>The Title</h1>
     </body>
 </html>
 
